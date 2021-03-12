@@ -1075,6 +1075,8 @@ static void do_forward(struct chanlist *o, struct cause_args *num,
 
 		ast_channel_req_accountcodes(c, in, AST_CHANNEL_REQUESTOR_BRIDGE_PEER);
 
+		ast_log(LOG_WARNING, "ZZZ DIAL channel %s application APPDIAL\n", ast_channel_name(c));
+
 		ast_channel_appl_set(c, "AppDial");
 		ast_channel_data_set(c, "(Outgoing Line)");
 		ast_channel_publish_snapshot(c);
