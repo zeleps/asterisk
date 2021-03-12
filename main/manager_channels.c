@@ -636,6 +636,8 @@ static struct ast_manager_event_blob *channel_newexten(
 		return NULL;
 	}
 
+	ast_log(LOG_WARNING, "ZZZ NewExten shows this: %s %s %s\n", new_snapshot->exten, new_snapshot->appl, new_snapshot->data);
+
 	/* DEPRECATED: Extension field deprecated in 12; remove in 14 */
 	return ast_manager_event_blob_create(
 		EVENT_FLAG_DIALPLAN, "Newexten",
