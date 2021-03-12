@@ -267,7 +267,7 @@ typedef enum {
 static struct vpb_pvt {
 
 	ast_mutex_t owner_lock;           /*!< Protect blocks that expect ownership to remain the same */
-	 *owner;        /*!< Channel who owns us, possibly NULL */
+	struct ast_channel *owner;        /*!< Channel who owns us, possibly NULL */
 
 	int golock;                       /*!< Got owner lock ? */
 
