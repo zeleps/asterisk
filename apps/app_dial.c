@@ -1075,8 +1075,6 @@ static void do_forward(struct chanlist *o, struct cause_args *num,
 
 		ast_channel_req_accountcodes(c, in, AST_CHANNEL_REQUESTOR_BRIDGE_PEER);
 
-		ast_log(LOG_WARNING, "ZZZ DIAL channel %s application APPDIAL\n", ast_channel_name(c));
-
 		ast_channel_appl_set(c, "AppDial");
 		ast_channel_data_set(c, "(Outgoing Line)");
 		ast_channel_publish_snapshot(c);
@@ -2613,6 +2611,8 @@ static int dial_exec_full(struct ast_channel *chan, const char *data, struct ast
 		ast_channel_inherit_variables(chan, tc);
 		ast_channel_datastore_inherit(chan, tc);
 		ast_max_forwards_decrement(tc);
+
+		ast_log(LOG_WARNING, "ZZZ DIAL channel %s application APPDIAL\n", ast_channel_name(tc));
 
 		ast_channel_appl_set(tc, "AppDial");
 		ast_channel_data_set(tc, "(Outgoing Line)");

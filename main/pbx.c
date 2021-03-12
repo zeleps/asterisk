@@ -2928,7 +2928,7 @@ static int pbx_extension_helper(struct ast_channel *c, struct ast_context *con,
 				return -1;
 			}
 
-				ast_log(LOG_WARNING, "No application '%s' for extension (%s, %s, %d)\n", e->app, context, exten, priority);
+			ast_log(LOG_WARNING, "ZZZ channel app '%s' set for extension (%s, %s, %d)\n", e->app, context, exten, priority);
 
 			if (ast_channel_context(c) != context)
 				ast_channel_context_set(c, context);
