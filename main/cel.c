@@ -768,6 +768,8 @@ struct ast_channel *ast_cel_fabricate_channel_from_event(const struct ast_event 
 		return NULL;
 	}
 
+		ast_log(LOG_WARNING, "ZZZ FABRICATE channel %s application APPDIAL\n", ast_channel_name(tchan));
+
 	ast_channel_appl_set(tchan, strcpy(app_data, record.application_name));
 	ast_channel_data_set(tchan, strcpy(app_data + strlen(record.application_name) + 1,
 		record.application_data));
