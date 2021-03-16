@@ -7024,6 +7024,7 @@ int ast_async_goto(struct ast_channel *chan, const char *context, const char *ex
 		if (ast_test_flag(ast_channel_flags(chan), AST_FLAG_IN_AUTOLOOP)) {
 			priority += 1;
 		}
+	ast_log(LOG_WARNING, "ZZZ EGT__1 channel %s exten %s\n", ast_channel_name(chan), exten);
 		ast_explicit_goto(chan, context, exten, priority);
 		ast_softhangup_nolock(chan, AST_SOFTHANGUP_ASYNCGOTO);
 		ast_channel_unlock(chan);
@@ -7037,6 +7038,7 @@ int ast_async_goto(struct ast_channel *chan, const char *context, const char *ex
 		ast_log(LOG_WARNING, "Unable to gain control of channel %s\n", ast_channel_name(chan));
 		return -1;
 	}
+	ast_log(LOG_WARNING, "ZZZ EGT__2 channel %s exten %s\n", ast_channel_name(newchan), exten);
 	ast_explicit_goto(newchan, context, exten, priority);
 	if (ast_pbx_start(newchan)) {
 		ast_hangup(newchan);
@@ -8791,7 +8793,11 @@ static int __ast_goto_if_exists(struct ast_channel *chan, const char *context, c
 	goto_func = (async) ? ast_async_goto : ast_explicit_goto;
 	if (ast_exists_extension(chan, context, exten, priority,
 		S_COR(ast_channel_caller(chan)->id.number.valid, ast_channel_caller(chan)->id.number.str, NULL)))
+		{
+				ast_log(LOG_WARNING, "ZZZ EGT__3 channel %s exten %s\n", ast_channel_name(chan), exten);
+
 		return goto_func(chan, context, exten, priority);
+		}
 	else {
 		return AST_PBX_GOTO_FAILED;
 	}
@@ -8853,6 +8859,8 @@ static int pbx_parseable_goto(struct ast_channel *chan, const char *goto_string,
 
 	if (mode)
 		ipri = ast_channel_priority(chan) + (ipri * mode);
+
+	ast_log(LOG_WARNING, "ZZZ EGT__4 channel %s exten %s\n", ast_channel_name(chan), exten);
 
 	if (async)
 		ast_async_goto(chan, context, exten, ipri);
