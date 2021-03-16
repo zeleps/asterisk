@@ -2975,23 +2975,29 @@ int bridge_channel_internal_join(struct ast_bridge_channel *bridge_channel)
 		 * bridge system only if the bridge technology is not MULTIMIX
 		 * capable.  The MULTIMIX technology has already done it.
 		 */
+	ast_log(LOG_ERROR, "ZZZ BRIDGE JOIN_QQ_6 for channel %s\n", ast_channel_name(bridge_channel->chan));
 		if (!(bridge_channel->bridge->technology->capabilities
 			& AST_BRIDGE_CAPABILITY_MULTIMIX)) {
 			indicate_src_change = 1;
 		}
 
+	ast_log(LOG_ERROR, "ZZZ BRIDGE JOIN_QQ_5 for channel %s\n", ast_channel_name(bridge_channel->chan));
 		bridge_channel_impart_signal(bridge_channel->chan);
 		ast_bridge_unlock(bridge_channel->bridge);
 
+	ast_log(LOG_ERROR, "ZZZ BRIDGE JOIN_QQ_4 for channel %s\n", ast_channel_name(bridge_channel->chan));
 		/* Must release any swap ref after unlocking the bridge. */
 		ao2_t_cleanup(swap, "Bridge push with swap successful");
 		swap = NULL;
+	ast_log(LOG_ERROR, "ZZZ BRIDGE JOIN_QQ_3 for channel %s\n", ast_channel_name(bridge_channel->chan));
 
 		if (indicate_src_change) {
 			ast_indicate(bridge_channel->chan, AST_CONTROL_SRCCHANGE);
 		}
 
+	ast_log(LOG_ERROR, "ZZZ BRIDGE JOIN_QQ_2 for channel %s\n", ast_channel_name(bridge_channel->chan));
 		bridge_channel_event_join_leave(bridge_channel, AST_BRIDGE_HOOK_TYPE_JOIN);
+	ast_log(LOG_ERROR, "ZZZ BRIDGE JOIN_QQ_1 for channel %s\n", ast_channel_name(bridge_channel->chan));
 
 		while (bridge_channel->state == BRIDGE_CHANNEL_STATE_WAIT) {
 			/* Wait for something to do. */
