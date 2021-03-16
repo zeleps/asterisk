@@ -2235,6 +2235,7 @@ int bridge_channel_internal_push_full(struct ast_bridge_channel *bridge_channel,
 {
 	struct ast_bridge *bridge = bridge_channel->bridge;
 	struct ast_bridge_channel *swap;
+	ast_log(LOG_ERROR, "ZZZ BRIDGE INTERNAL PUSH FULL for channel %s\n", ast_channel_name(bridge_channel->chan));
 
 	ast_assert(!bridge_channel->in_bridge);
 
