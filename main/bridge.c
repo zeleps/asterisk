@@ -1710,7 +1710,7 @@ int ast_bridge_join(struct ast_bridge *bridge,
 		goto join_exit;
 	}
 
-			ast_log(LOG_ERROR, "ZZZ BRIDGE REF_3 for channel %s\n", ast_channel_name(bridge_channel->chan));
+			//ast_log(LOG_ERROR, "ZZZ BRIDGE REF_3 for channel %s\n", ast_channel_name(bridge_channel->chan));
 
 
 /* XXX ASTERISK-21271 features cannot be NULL when passed in. When it is changed to allocated we can do like ast_bridge_impart() and allocate one. */
@@ -1787,7 +1787,7 @@ static void *bridge_channel_depart_thread(void *data)
 {
 	struct ast_bridge_channel *bridge_channel = data;
 	int res = 0;
-			ast_log(LOG_ERROR, "ZZZ BRIDGE REF_2 for channel %s\n", ast_channel_name(bridge_channel->chan));
+			//ast_log(LOG_ERROR, "ZZZ BRIDGE REF_2 for channel %s\n", ast_channel_name(bridge_channel->chan));
 
 	if (bridge_channel->callid) {
 		ast_callid_threadassoc_add(bridge_channel->callid);
