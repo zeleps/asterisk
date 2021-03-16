@@ -2901,6 +2901,7 @@ static void bridge_channel_event_join_leave(struct ast_bridge_channel *bridge_ch
 
 int bridge_channel_internal_join(struct ast_bridge_channel *bridge_channel)
 {
+			ast_log(LOG_ERROR, "ZZZ BRIDGE JOIN_4 for channel %s\n", ast_channel_name(bridge_channel->chan));
 	int res = 0;
 	uint8_t indicate_src_change = 0;
 	struct ast_bridge_features *channel_features;
@@ -2910,6 +2911,7 @@ int bridge_channel_internal_join(struct ast_bridge_channel *bridge_channel)
 		bridge_channel->bridge->uniqueid,
 		bridge_channel, ast_channel_name(bridge_channel->chan));
 
+			ast_log(LOG_ERROR, "ZZZ BRIDGE JOIN_3 for channel %s\n", ast_channel_name(bridge_channel->chan));
 	/*
 	 * Directly locking the bridge is safe here because nobody else
 	 * knows about this bridge_channel yet.
@@ -2934,6 +2936,7 @@ int bridge_channel_internal_join(struct ast_bridge_channel *bridge_channel)
 	}
 	ast_channel_internal_bridge_set(bridge_channel->chan, bridge_channel->bridge);
 
+			ast_log(LOG_ERROR, "ZZZ BRIDGE JOIN_2 for channel %s\n", ast_channel_name(bridge_channel->chan));
 	/* Attach features requested by the channel */
 	channel_features = ast_channel_feature_hooks_get(bridge_channel->chan);
 	if (channel_features) {
@@ -2963,6 +2966,7 @@ int bridge_channel_internal_join(struct ast_bridge_channel *bridge_channel)
 		res = -1;
 	}
 	bridge_reconfigured(bridge_channel->bridge, !bridge_channel->inhibit_colp);
+			ast_log(LOG_ERROR, "ZZZ BRIDGE JOIN_1 for channel %s\n", ast_channel_name(bridge_channel->chan));
 
 	if (bridge_channel->state == BRIDGE_CHANNEL_STATE_WAIT) {
 		/*
