@@ -767,31 +767,26 @@ void ast_channel_publish_snapshot(struct ast_channel *chan)
 	struct ast_channel_snapshot *snapshot;
 	struct stasis_message *message;
 
-	ast_log(LOG_WARNING, "ZZZ channel %s SNAPSHOT STEP 1\n", ast_channel_name(chan));
-
 	if (!ast_channel_snapshot_type()) {
 		return;
 	}
-
-	ast_log(LOG_WARNING, "ZZZ channel %s SNAPSHOT STEP 2\n", ast_channel_name(chan));
 
 	if (ast_test_flag(ast_channel_flags(chan), AST_FLAG_SNAPSHOT_STAGE)) {
 		return;
 	}
 
-	ast_log(LOG_WARNING, "ZZZ channel %s SNAPSHOT STEP 3\n", ast_channel_name(chan));
 	snapshot = ast_channel_snapshot_create(chan);
 	if (!snapshot) {
 		return;
 	}
 
-	ast_log(LOG_WARNING, "ZZZ channel %s SNAPSHOT STEP 4\n", ast_channel_name(chan));
 	message = stasis_message_create(ast_channel_snapshot_type(), snapshot);
 	ao2_ref(snapshot, -1);
 	if (!message) {
 		return;
 	}
-	ast_log(LOG_WARNING, "ZZZ channel %s SNAPSHOT STEP 5\n", ast_channel_name(chan));
+
+	ast_log(LOG_WARNING, "ZZZ channel %s SNAPSHOT PUBLISH\n", ast_channel_name(chan));
 
 	ast_assert(ast_channel_topic(chan) != NULL);
 	stasis_publish(ast_channel_topic(chan), message);
