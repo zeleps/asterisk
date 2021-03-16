@@ -2966,7 +2966,8 @@ int bridge_channel_internal_join(struct ast_bridge_channel *bridge_channel)
 		res = -1;
 	}
 	bridge_reconfigured(bridge_channel->bridge, !bridge_channel->inhibit_colp);
-			ast_log(LOG_ERROR, "ZZZ BRIDGE JOIN_1 for channel %s\n", ast_channel_name(bridge_channel->chan));
+
+	ast_log(LOG_ERROR, "ZZZ BRIDGE JOIN_1 for channel %s\n", ast_channel_name(bridge_channel->chan));
 
 	if (bridge_channel->state == BRIDGE_CHANNEL_STATE_WAIT) {
 		/*
@@ -2997,6 +2998,7 @@ int bridge_channel_internal_join(struct ast_bridge_channel *bridge_channel)
 			bridge_channel_wait(bridge_channel);
 		}
 
+	ast_log(LOG_ERROR, "ZZZ BRIDGE JOIN_QQ for channel %s\n", ast_channel_name(bridge_channel->chan));
 		/* Force a timeout on any accumulated DTMF hook digits. */
 		ast_bridge_channel_feature_digit(bridge_channel, 0);
 
