@@ -7011,7 +7011,7 @@ int ast_explicit_goto(struct ast_channel *chan, const char *context, const char 
 		ast_channel_priority_set(chan, priority);
 	}
 
-	ast_channel_stage_snapshot_done(chan);
+	//ast_channel_stage_snapshot_done(chan);
 
 	ast_channel_unlock(chan);
 
