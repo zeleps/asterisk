@@ -6995,6 +6995,8 @@ int ast_explicit_goto(struct ast_channel *chan, const char *context, const char 
 
 	ast_channel_lock(chan);
 
+	ast_log(LOG_WARNING, "ZZZ EXP_GOTO channel %s exten %s\n", ast_channel_name(chan), exten);
+
 	if (!ast_strlen_zero(context))
 		ast_channel_context_set(chan, context);
 	if (!ast_strlen_zero(exten))
@@ -7669,6 +7671,7 @@ static void *pbx_outgoing_exec(void *data)
 
 		ast_hangup(chan);
 	} else {
+	ast_log(LOG_WARNING, "ZZZ OUTGOING channel %s exten %s\n", ast_channel_name(chan), outgoing->exten);
 		if (!ast_strlen_zero(outgoing->context)) {
 			ast_channel_context_set(chan, outgoing->context);
 		}
