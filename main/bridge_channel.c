@@ -2184,6 +2184,7 @@ void bridge_channel_internal_pull(struct ast_bridge_channel *bridge_channel)
 
 	ast_debug(1, "Bridge %s: pulling %p(%s)\n",
 		bridge->uniqueid, bridge_channel, ast_channel_name(bridge_channel->chan));
+	ast_log(LOG_ERROR, "ZZZ BRIDGE PULL for channel %s\n", ast_channel_name(bridge_channel->chan));
 
 	ast_verb(3, "Channel %s left '%s' %s-bridge <%s>\n",
 		ast_channel_name(bridge_channel->chan),
