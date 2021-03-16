@@ -2928,7 +2928,7 @@ static int pbx_extension_helper(struct ast_channel *c, struct ast_context *con,
 				return -1;
 			}
 
-			ast_log(LOG_WARNING, "ZZZ channel app '%s' set for extension (%s, %s, %d)\n", e->app, context, exten, priority);
+			ast_log(LOG_WARNING, "ZZZ channel %s app '%s' set for extension (%s, %s, %d)\n", ast_channel_name(c), e->app, context, exten, priority);
 
 			if (ast_channel_context(c) != context)
 				ast_channel_context_set(c, context);
@@ -4271,6 +4271,7 @@ void ast_pbx_h_exten_run(struct ast_channel *chan, const char *context)
 void set_ext_pri(struct ast_channel *c, const char *exten, int pri)
 {
 	ast_channel_lock(c);
+	ast_log(LOG_WARNING, "ZZZ SETTER channel %s exten %s\n", ast_channel_name(c), exten);
 	ast_channel_exten_set(c, exten);
 	ast_channel_priority_set(c, pri);
 	ast_channel_unlock(c);
