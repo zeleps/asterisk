@@ -840,6 +840,7 @@ void ast_channel_publish_varset(struct ast_channel *chan, const char *name, cons
 
 	/*! If there are manager variables, force a cache update */
 	if (chan && ast_channel_has_manager_vars()) {
+		ast_log(LOG_ERROR, "ZZZ VARSET Snapshot for channel %s\n", ast_channel_name(chan));
 		ast_channel_publish_snapshot(chan);
 	}
 
