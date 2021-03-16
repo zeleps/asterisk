@@ -7172,6 +7172,7 @@ static void channel_do_masquerade(struct ast_channel *original, struct ast_chann
 	ast_channel_redirecting_set(original, ast_channel_redirecting(clonechan));
 	ast_channel_redirecting_set(clonechan, &exchange.redirecting);
 
+	ast_log(LOG_ERROR, "ZZZ MASQUERADE SETTER Snapshot for channel %s\n", ast_channel_name(original));
 	ast_channel_publish_snapshot(original);
 
 	/* Restore original timing file descriptor */
@@ -7354,6 +7355,7 @@ void ast_set_callerid(struct ast_channel *chan, const char *cid_num, const char 
 		ast_channel_caller(chan)->ani.number.str = ast_strdup(cid_ani);
 	}
 
+	ast_log(LOG_ERROR, "ZZZ CALLERID SETTER Snapshot for channel %s\n", ast_channel_name(chan));
 	ast_channel_publish_snapshot(chan);
 
 	ast_channel_unlock(chan);
@@ -7380,6 +7382,8 @@ void ast_channel_set_caller_event(struct ast_channel *chan, const struct ast_par
 
 	ast_channel_lock(chan);
 	ast_party_caller_set(ast_channel_caller(chan), caller, update);
+	ast_log(LOG_ERROR, "ZZZ CALLER EVENT Snapshot for channel %s\n", ast_channel_name(chan));
+
 	ast_channel_publish_snapshot(chan);
 	ast_channel_unlock(chan);
 }
@@ -8305,7 +8309,8 @@ void ast_channel_set_connected_line(struct ast_channel *chan, const struct ast_p
 
 	ast_channel_lock(chan);
 	ast_party_connected_line_set(ast_channel_connected(chan), connected, update);
-	ast_channel_publish_snapshot(chan);
+		ast_log(LOG_ERROR, "ZZZ CONNECTED LINE SETTER Snapshot for channel %s\n", ast_channel_name(chan));
+ast_channel_publish_snapshot(chan);
 	ast_channel_unlock(chan);
 }
 

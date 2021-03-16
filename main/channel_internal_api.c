@@ -387,6 +387,8 @@ void ast_channel_amaflags_set(struct ast_channel *chan, enum ama_flags value)
 		return;
 	}
 	chan->amaflags = value;
+	ast_log(LOG_ERROR, "ZZZ AMAFLAGS SETTER Snapshot for channel %s\n", ast_channel_name(chan));
+
 	ast_channel_publish_snapshot(chan);
 }
 int ast_channel_fdno(const struct ast_channel *chan)
@@ -1204,8 +1206,6 @@ struct ast_bridge *ast_channel_internal_bridge(const struct ast_channel *chan)
 void ast_channel_internal_bridge_set(struct ast_channel *chan, struct ast_bridge *value)
 {
 	chan->bridge = value;
-			ast_log(LOG_ERROR, "ZZZ BRIDGE SETTER Snapshot for channel %s\n", ast_channel_name(chan));
-
 	ast_channel_publish_snapshot(chan);
 }
 
@@ -1365,6 +1365,8 @@ void ast_channel_internal_copy_linkedid(struct ast_channel *dest, struct ast_cha
 		return;
 	}
 	dest->linkedid = source->linkedid;
+		ast_log(LOG_ERROR, "ZZZ LINKEDID SETTER Snapshot for channel %s\n", ast_channel_name(dest));
+
 	ast_channel_publish_snapshot(dest);
 }
 
