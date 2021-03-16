@@ -2115,6 +2115,9 @@ static void bridge_channel_moving(struct ast_bridge_channel *bridge_channel, str
 void bridge_do_merge(struct ast_bridge *dst_bridge, struct ast_bridge *src_bridge, struct ast_bridge_channel **kick_me, unsigned int num_kick,
 	unsigned int optimized)
 {
+			ast_log(LOG_ERROR, "ZZZ BRIDGE DO MERGE for channel %s\n", ast_channel_name(bridge_channel->chan));
+
+
 	struct ast_bridge_channel *bridge_channel;
 	unsigned int idx;
 
@@ -2381,8 +2384,6 @@ int ast_bridge_merge(struct ast_bridge *dst_bridge, struct ast_bridge *src_bridg
 int bridge_do_move(struct ast_bridge *dst_bridge, struct ast_bridge_channel *bridge_channel, int attempt_recovery,
 	unsigned int optimized)
 {
-		ast_log(LOG_ERROR, "ZZZ BRIDGE DO MOVE for channel %s\n", ast_channel_name(bridge_channel->chan));
-
 	struct ast_bridge *orig_bridge;
 	int was_in_bridge;
 	int res = 0;
