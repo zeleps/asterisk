@@ -2901,6 +2901,8 @@ static void bridge_channel_event_join_leave(struct ast_bridge_channel *bridge_ch
 
 int bridge_channel_internal_join(struct ast_bridge_channel *bridge_channel)
 {
+			ast_log(LOG_ERROR, "ZZZ BRIDGE JOIN for channel %s\n", ast_channel_name(bridge_channel->chan));
+
 	int res = 0;
 	uint8_t indicate_src_change = 0;
 	struct ast_bridge_features *channel_features;
@@ -2999,9 +3001,6 @@ int bridge_channel_internal_join(struct ast_bridge_channel *bridge_channel)
 		bridge_channel_event_join_leave(bridge_channel, AST_BRIDGE_HOOK_TYPE_LEAVE);
 		ast_bridge_channel_lock_bridge(bridge_channel);
 	}
-
-			ast_log(LOG_ERROR, "ZZZ BRIDGE JOIN for channel %s\n", ast_channel_name(bridge_channel->chan));
-
 
 	bridge_channel_internal_pull(bridge_channel);
 	bridge_channel_settle_owed_events(bridge_channel->bridge, bridge_channel);

@@ -1700,6 +1700,9 @@ int ast_bridge_join(struct ast_bridge *bridge,
 	int res = 0;
 
 	bridge_channel = bridge_channel_internal_alloc(bridge);
+
+				ast_log(LOG_ERROR, "ZZZ BRIDGE REF_3 for channel %s\n", ast_channel_name(bridge_channel->chan));
+
 	if (flags & AST_BRIDGE_JOIN_PASS_REFERENCE) {
 		ao2_ref(bridge, -1);
 	}
@@ -1782,6 +1785,7 @@ static void *bridge_channel_depart_thread(void *data)
 {
 	struct ast_bridge_channel *bridge_channel = data;
 	int res = 0;
+			ast_log(LOG_ERROR, "ZZZ BRIDGE REF_2 for channel %s\n", ast_channel_name(bridge_channel->chan));
 
 	if (bridge_channel->callid) {
 		ast_callid_threadassoc_add(bridge_channel->callid);
@@ -1811,8 +1815,10 @@ static void *bridge_channel_depart_thread(void *data)
 /*! \brief Thread responsible for independent imparted bridged channels */
 static void *bridge_channel_ind_thread(void *data)
 {
+
 	struct ast_bridge_channel *bridge_channel = data;
 	struct ast_channel *chan;
+			ast_log(LOG_ERROR, "ZZZ BRIDGE REF_1 for channel %s\n", ast_channel_name(bridge_channel->chan));
 
 	if (bridge_channel->callid) {
 		ast_callid_threadassoc_add(bridge_channel->callid);

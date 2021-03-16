@@ -625,6 +625,7 @@ static int pre_bridge_setup(struct ast_channel *chan, struct ast_channel *peer, 
 
 int ast_bridge_call_with_flags(struct ast_channel *chan, struct ast_channel *peer, struct ast_bridge_config *config, unsigned int flags)
 {
+			ast_log(LOG_ERROR, "ZZZ BRIDGE REF_5 for channel %s\n", ast_channel_name(chan));
 	int res;
 	struct ast_bridge *bridge;
 	struct ast_bridge_features chan_features;
