@@ -2014,7 +2014,7 @@ static void bridge_channel_blind_transfer(struct ast_bridge_channel *bridge_chan
 {
 	ast_async_goto(bridge_channel->chan, blind_data->context, blind_data->exten, 1);
 	ast_bridge_channel_kick(bridge_channel, AST_CAUSE_NORMAL_CLEARING);
-		ast_log(LOG_WARNING, "ZZZ SNAPTRACK_3 channel %s\n", ast_channel_name(chan));
+		ast_log(LOG_WARNING, "ZZZ SNAPTRACK_3 channel %s\n", ast_channel_name(bridge_channel->chan));
 
 }
 
