@@ -6997,8 +6997,6 @@ int ast_explicit_goto(struct ast_channel *chan, const char *context, const char 
 
 	ast_log(LOG_WARNING, "ZZZ EXP_GOTO channel %s exten %s\n", ast_channel_name(chan), exten);
 
-	ast_channel_stage_snapshot(chan);
-
 	if (!ast_strlen_zero(context))
 		ast_channel_context_set(chan, context);
 	if (!ast_strlen_zero(exten))
@@ -7010,8 +7008,6 @@ int ast_explicit_goto(struct ast_channel *chan, const char *context, const char 
 		}
 		ast_channel_priority_set(chan, priority);
 	}
-
-	ast_channel_stage_snapshot_done(chan);
 
 	ast_channel_unlock(chan);
 
