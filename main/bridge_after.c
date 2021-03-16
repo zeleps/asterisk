@@ -507,7 +507,7 @@ int ast_bridge_setup_after_goto(struct ast_channel *chan)
 			goto_failed = ast_parseable_goto(chan, after_bridge->parseable_goto);
 			if (goto_failed) {
 				/* Restore original dialplan location. */
-	ast_log(LOG_WARNING, "ZZZ BRIDGE channel %s exten %s\n", ast_channel_name(chan, exten));
+	ast_log(LOG_WARNING, "ZZZ BRIDGE channel %s exten %s\n", ast_channel_name(chan), exten);
 				ast_channel_context_set(chan, context);
 				ast_channel_exten_set(chan, exten);
 				ast_channel_priority_set(chan, priority);

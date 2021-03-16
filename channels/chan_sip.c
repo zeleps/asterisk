@@ -8383,7 +8383,7 @@ static struct ast_channel *sip_new(struct sip_pvt *i, int state, const char *tit
 	ast_channel_lock(tmp);
 	sip_pvt_lock(i);
 
-	ast_log(LOG_WARNING, "ZZZ SIP SET channel %s exten %s\n", ast_channel_name(tmp, exten));
+	ast_log(LOG_WARNING, "ZZZ SIP SET channel %s exten %s\n", ast_channel_name(tmp), exten);
 	ast_channel_exten_set(tmp, exten);
 
 	/* Don't use ast_set_callerid() here because it will
