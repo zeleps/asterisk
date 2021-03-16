@@ -482,7 +482,7 @@ int pbx_exec(struct ast_channel *c,	/*!< Channel */
 	saved_c_data= ast_channel_data(c);
 
 	ast_channel_lock(c);
-	ast_log(LOG_WARNING, "ZZZ EXEC channel %s application %s\n", ast_channel_name(c, app->name));
+	ast_log(LOG_WARNING, "ZZZ EXEC channel %s application %s\n", ast_channel_name(c), app->name);
 
 	ast_channel_appl_set(c, app->name);
 	ast_channel_data_set(c, data);
@@ -495,7 +495,7 @@ int pbx_exec(struct ast_channel *c,	/*!< Channel */
 	if (app->module && u)
 		__ast_module_user_remove(app->module, u);
 	/* restore channel values */
-	ast_log(LOG_WARNING, "ZZZ EXEC channel %s saved application %s\n", ast_channel_name(c, saved_c_appl));
+	ast_log(LOG_WARNING, "ZZZ EXEC channel %s saved application %s\n", ast_channel_name(c), saved_c_appl);
 	ast_channel_appl_set(c, saved_c_appl);
 	ast_channel_data_set(c, saved_c_data);
 	return res;
