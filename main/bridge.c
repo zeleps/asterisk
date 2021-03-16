@@ -1701,8 +1701,6 @@ int ast_bridge_join(struct ast_bridge *bridge,
 
 	bridge_channel = bridge_channel_internal_alloc(bridge);
 
-				ast_log(LOG_ERROR, "ZZZ BRIDGE REF_3 for channel %s\n", ast_channel_name(bridge_channel->chan));
-
 	if (flags & AST_BRIDGE_JOIN_PASS_REFERENCE) {
 		ao2_ref(bridge, -1);
 	}
@@ -1711,6 +1709,10 @@ int ast_bridge_join(struct ast_bridge *bridge,
 		res = -1;
 		goto join_exit;
 	}
+
+			ast_log(LOG_ERROR, "ZZZ BRIDGE REF_3 for channel %s\n", ast_channel_name(bridge_channel->chan));
+
+
 /* XXX ASTERISK-21271 features cannot be NULL when passed in. When it is changed to allocated we can do like ast_bridge_impart() and allocate one. */
 	ast_assert(features != NULL);
 	if (!features) {
