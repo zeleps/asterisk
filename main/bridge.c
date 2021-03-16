@@ -2115,8 +2115,6 @@ static void bridge_channel_moving(struct ast_bridge_channel *bridge_channel, str
 void bridge_do_merge(struct ast_bridge *dst_bridge, struct ast_bridge *src_bridge, struct ast_bridge_channel **kick_me, unsigned int num_kick,
 	unsigned int optimized)
 {
-			ast_log(LOG_ERROR, "ZZZ BRIDGE DO MERGE for channel %s\n", ast_channel_name(bridge_channel->chan));
-
 
 	struct ast_bridge_channel *bridge_channel;
 	unsigned int idx;
@@ -2133,6 +2131,8 @@ void bridge_do_merge(struct ast_bridge *dst_bridge, struct ast_bridge *src_bridg
 	 * bridge_channel_internal_pull() alters the list we are traversing.
 	 */
 	AST_LIST_TRAVERSE_SAFE_BEGIN(&src_bridge->channels, bridge_channel, entry) {
+			ast_log(LOG_ERROR, "ZZZ BRIDGE DO MERGE for channel %s\n", ast_channel_name(bridge_channel->chan));
+
 		if (bridge_channel->state != BRIDGE_CHANNEL_STATE_WAIT) {
 			/*
 			 * The channel is already leaving let it leave normally because
