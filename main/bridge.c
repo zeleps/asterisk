@@ -1266,10 +1266,13 @@ static void check_bridge_play_sounds(struct ast_bridge *bridge)
 
 void ast_bridge_vars_set(struct ast_channel *chan, const char *name, const char *pvtid)
 {
+		ast_log(LOG_WARNING, "ZZZ BRIDGE VAR SET channel %s\n", ast_channel_name(chan));
+
 	ast_channel_stage_snapshot(chan);
 	pbx_builtin_setvar_helper(chan, "BRIDGEPEER", name);
 	pbx_builtin_setvar_helper(chan, "BRIDGEPVTCALLID", pvtid);
 	ast_channel_stage_snapshot_done(chan);
+		ast_log(LOG_WARNING, "ZZZ BRIDGE VAR SET EXIT channel %s\n", ast_channel_name(chan));
 }
 
 /*!
