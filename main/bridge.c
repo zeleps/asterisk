@@ -2400,6 +2400,9 @@ int bridge_do_move(struct ast_bridge *dst_bridge, struct ast_bridge_channel *bri
 	orig_bridge = bridge_channel->bridge;
 	was_in_bridge = bridge_channel->in_bridge;
 
+		ast_log(LOG_ERROR, "ZZZ BRIDGE DO MOVE for channel %s\n", ast_channel_name(bridge_channel->chan));
+
+
 	bridge_channel_internal_pull(bridge_channel);
 	if (bridge_channel->state != BRIDGE_CHANNEL_STATE_WAIT) {
 		/*

@@ -3000,6 +3000,9 @@ int bridge_channel_internal_join(struct ast_bridge_channel *bridge_channel)
 		ast_bridge_channel_lock_bridge(bridge_channel);
 	}
 
+			ast_log(LOG_ERROR, "ZZZ BRIDGE JOIN for channel %s\n", ast_channel_name(bridge_channel->chan));
+
+
 	bridge_channel_internal_pull(bridge_channel);
 	bridge_channel_settle_owed_events(bridge_channel->bridge, bridge_channel);
 	bridge_reconfigured(bridge_channel->bridge, 1);
