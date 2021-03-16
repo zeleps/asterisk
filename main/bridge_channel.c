@@ -2901,6 +2901,8 @@ static void bridge_channel_event_join_leave(struct ast_bridge_channel *bridge_ch
 
 int bridge_channel_internal_join(struct ast_bridge_channel *bridge_channel)
 {
+		ast_log(LOG_ERROR, "ZZZ BRIDGE INTERNAL JOIN for channel %s\n", ast_channel_name(bridge_channel->chan));
+
 	int res = 0;
 	uint8_t indicate_src_change = 0;
 	struct ast_bridge_features *channel_features;
