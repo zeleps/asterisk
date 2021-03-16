@@ -1204,6 +1204,8 @@ struct ast_bridge *ast_channel_internal_bridge(const struct ast_channel *chan)
 void ast_channel_internal_bridge_set(struct ast_channel *chan, struct ast_bridge *value)
 {
 	chan->bridge = value;
+			ast_log(LOG_ERROR, "ZZZ BRIDGE SETTER Snapshot for channel %s\n", ast_channel_name(chan));
+
 	ast_channel_publish_snapshot(chan);
 }
 
