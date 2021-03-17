@@ -7022,13 +7022,13 @@ int ast_async_goto(struct ast_channel *chan, const char *context, const char *ex
 
 	ast_channel_lock(chan);
 	/* Channels in a bridge or running a PBX can be sent directly to the specified destination */
-	if (ast_channel_is_bridged(chan) || ast_channel_pbx(chan)) {
+	if (0) {//ast_channel_is_bridged(chan) || ast_channel_pbx(chan)) {
 		if (ast_test_flag(ast_channel_flags(chan), AST_FLAG_IN_AUTOLOOP)) {
 			priority += 1;
 		}
 	ast_log(LOG_WARNING, "ZZZ EGT__1 channel %s exten %s\n", ast_channel_name(chan), exten);
+		ast_softhangup_nolock(chan, AST_SOFTHANGUP_ASYNCGOTO);
 		ast_explicit_goto(chan, context, exten, priority);
-		//ast_softhangup_nolock(chan, AST_SOFTHANGUP_ASYNCGOTO);
 		ast_channel_unlock(chan);
 	ast_log(LOG_WARNING, "ZZZ SNAPTRACK_2 channel %s\n", ast_channel_name(chan));
 		return 0;
