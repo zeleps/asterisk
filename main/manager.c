@@ -5039,6 +5039,9 @@ static int action_redirect(struct mansession *s, const struct message *m)
 		astman_send_error(s, m, buf);
 		return 0;
 	}
+
+		ast_log(LOG_WARNING, "ZZZ GOTOTRACK_1 channel %s\n", ast_channel_name(chan));
+
 	if (ast_check_hangup_locked(chan)) {
 		astman_send_error(s, m, "Redirect failed, channel not up.");
 		chan = ast_channel_unref(chan);
@@ -5046,6 +5049,7 @@ static int action_redirect(struct mansession *s, const struct message *m)
 	}
 
 	if (ast_strlen_zero(name2)) {
+		ast_log(LOG_WARNING, "ZZZ GOTOTRACK_2 channel %s\n", ast_channel_name(chan));
 		/* Single channel redirect in progress. */
 		res = ast_async_goto(chan, context, exten, pi);
 		if (!res) {
@@ -5064,6 +5068,7 @@ static int action_redirect(struct mansession *s, const struct message *m)
 		chan = ast_channel_unref(chan);
 		return 0;
 	}
+		ast_log(LOG_WARNING, "ZZZ GOTOTRACK_3 channel %s\n", ast_channel_name(chan2));
 	if (ast_check_hangup_locked(chan2)) {
 		astman_send_error(s, m, "Redirect failed, extra channel not up.");
 		chan2 = ast_channel_unref(chan2);
@@ -5086,11 +5091,15 @@ static int action_redirect(struct mansession *s, const struct message *m)
 	}
 	ast_channel_unlock(chan2);
 
+	ast_log(LOG_WARNING, "ZZZ GOTOTRACK_4 channel %s\n", ast_channel_name(chan));
+
 	res = ast_async_goto(chan, context, exten, pi);
 	if (!res) {
 		if (!ast_strlen_zero(context2)) {
+		ast_log(LOG_WARNING, "ZZZ GOTOTRACK_5 channel %s\n", ast_channel_name(chan));
 			res = ast_async_goto(chan2, context2, exten2, pi2);
 		} else {
+		ast_log(LOG_WARNING, "ZZZ GOTOTRACK_6 channel %s\n", ast_channel_name(chan));
 			res = ast_async_goto(chan2, context, exten, pi);
 		}
 		if (!res) {
