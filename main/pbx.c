@@ -7028,7 +7028,7 @@ int ast_async_goto(struct ast_channel *chan, const char *context, const char *ex
 		}
 	ast_log(LOG_WARNING, "ZZZ EGT__1 channel %s exten %s\n", ast_channel_name(chan), exten);
 		ast_explicit_goto(chan, context, exten, priority);
-		ast_softhangup_nolock(chan, AST_SOFTHANGUP_ASYNCGOTO);
+		//ast_softhangup_nolock(chan, AST_SOFTHANGUP_ASYNCGOTO);
 		ast_channel_unlock(chan);
 	ast_log(LOG_WARNING, "ZZZ SNAPTRACK_2 channel %s\n", ast_channel_name(chan));
 		return 0;
