@@ -7014,7 +7014,7 @@ int ast_async_goto(struct ast_channel *chan, const char *context, const char *ex
 
 	ast_channel_lock(chan);
 	/* Channels in a bridge or running a PBX can be sent directly to the specified destination */
-	if (ast_channel_is_bridged(chan) || ast_channel_pbx(chan)) {
+	if (0) { //ast_channel_is_bridged(chan) || ast_channel_pbx(chan)) {
 		if (ast_test_flag(ast_channel_flags(chan), AST_FLAG_IN_AUTOLOOP)) {
 			priority += 1;
 		}
